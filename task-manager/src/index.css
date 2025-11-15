@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.app {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+}
+
+.task-list {
+  margin-top: 20px;
+}
