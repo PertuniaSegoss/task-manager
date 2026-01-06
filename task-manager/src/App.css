@@ -11,9 +11,11 @@ body {
 .app {
   background-color: #fff;
   padding: 2rem;
-  width: 500px;
+  width: 95%; /* allow shrinking on mobile */
+  max-width: 500px; /* keeps desktop design */
   border-radius: 1.5rem;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
 }
 
 h1 {
@@ -24,14 +26,17 @@ h1 {
   letter-spacing: 0.5px;
 }
 
+/* Input Row */
 .input-row {
   display: flex;
   gap: 0.7rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap; /* allows input & button to stack */
 }
 
 input[type="text"] {
-  flex: 1;
+  flex: 1; /* takes available space */
+  min-width: 120px; /* prevents being too small */
   padding: 0.8rem 1rem;
   border-radius: 1rem;
   border: 1px solid #ddd;
@@ -55,6 +60,7 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0; /* prevents button from shrinking too much */
 }
 
 button:hover {
@@ -63,11 +69,13 @@ button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Filter Row */
 .filter-row {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap; /* allow filters to stack on small screens */
 }
 
 .filter-row button {
@@ -91,12 +99,14 @@ button:hover {
   box-shadow: 0 2px 6px rgba(191, 162, 67, 0.5);
 }
 
+/* Task List */
 .task-list {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
+/* Task Item */
 .task-item {
   background-color: #fff;
   display: flex;
@@ -107,6 +117,7 @@ button:hover {
   border: 1px solid #eee;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
+  flex-wrap: wrap; /* allow content to wrap on small screens */
 }
 
 .task-item:hover {
@@ -121,6 +132,7 @@ button:hover {
 
 .edit-input {
   flex: 1;
+  min-width: 100px;
   padding: 0.6rem 0.8rem;
   border-radius: 0.8rem;
   border: 1px solid #ddd;
@@ -129,15 +141,17 @@ button:hover {
   margin-right: 0.5rem;
 }
 
+/* Task Buttons */
 .task-buttons {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap; /* wrap buttons if too small */
 }
 
 .edit-btn,
-.save-btn {
-  background-color: #bfa243;
-  color: #fff;
+.save-btn,
+.cancel-btn,
+.delete-btn {
   padding: 0.4rem 0.8rem;
   border-radius: 0.7rem;
   font-size: 0.9rem;
@@ -145,6 +159,13 @@ button:hover {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+/* Individual Button Colors */
+.edit-btn,
+.save-btn {
+  background-color: #bfa243;
+  color: #fff;
 }
 
 .edit-btn:hover,
@@ -157,13 +178,6 @@ button:hover {
 .cancel-btn {
   background-color: #888;
   color: #fff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .cancel-btn:hover {
@@ -174,13 +188,6 @@ button:hover {
 .delete-btn {
   background-color: #000;
   color: #fff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .delete-btn:hover {
@@ -188,9 +195,43 @@ button:hover {
   transform: translateY(-1px);
 }
 
+/* Checkbox */
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: #bfa243;
   cursor: pointer;
+}
+
+/* MOBILE MEDIA QUERIES */
+@media (max-width: 480px) {
+  .app {
+    padding: 1rem;
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .task-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
