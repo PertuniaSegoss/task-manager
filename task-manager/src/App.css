@@ -1,4 +1,4 @@
-/* =================== GENERAL STYLES =================== */
+/* ================= BODY ================= */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -9,11 +9,12 @@ body {
   min-height: 100vh;
 }
 
+/* ================= APP CONTAINER ================= */
 .app {
   background-color: #fff;
   padding: 2rem;
-  width: 95%;       /* scale to fit mobile */
-  max-width: 500px; /* desktop width */
+  width: 95%;          /* scales on small screens */
+  max-width: 500px;    /* keeps desktop design */
   border-radius: 1.5rem;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -27,17 +28,17 @@ h1 {
   letter-spacing: 0.5px;
 }
 
-/* =================== INPUT ROW =================== */
+/* ================= INPUT ROW ================= */
 .input-row {
   display: flex;
   gap: 0.7rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap; /* allow wrapping if needed */
+  flex-wrap: wrap; /* allows wrapping if needed */
 }
 
 input[type="text"] {
-  flex: 1;
-  min-width: 120px;
+  flex: 1;            /* take available space */
+  min-width: 120px;   /* prevents input from shrinking too much */
   padding: 0.8rem 1rem;
   border-radius: 1rem;
   border: 1px solid #ddd;
@@ -52,7 +53,7 @@ input[type="text"]:focus {
   box-shadow: 0 0 6px rgba(191, 162, 67, 0.4);
 }
 
-.input-row button {
+button {
   background-color: #000;
   color: #fff;
   padding: 0.8rem 1.2rem;
@@ -61,22 +62,22 @@ input[type="text"]:focus {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
+  flex-shrink: 0;     /* prevents shrinking on small screens */
 }
 
-.input-row button:hover {
+button:hover {
   background-color: #333;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* =================== FILTER ROW =================== */
+/* ================= FILTER ROW ================= */
 .filter-row {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* wrap buttons if needed */
 }
 
 .filter-row button {
@@ -100,32 +101,14 @@ input[type="text"]:focus {
   box-shadow: 0 2px 6px rgba(191, 162, 67, 0.5);
 }
 
-/* =================== TASK LIST =================== */
+/* ================= TASK LIST ================= */
 .task-list {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-
-  max-height: 300px;  /* limit height on mobile */
-  overflow-y: auto;   /* enable vertical scroll */
-  padding-right: 0.5rem;
-  box-sizing: border-box;
 }
 
-/* Scrollbar styling for WebKit browsers */
-.task-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.task-list::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-.task-list::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
+/* ================= TASK ITEM ================= */
 .task-item {
   background-color: #fff;
   display: flex;
@@ -136,7 +119,7 @@ input[type="text"]:focus {
   border: 1px solid #eee;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-  flex-wrap: wrap; /* allow wrapping on mobile */
+  flex-wrap: wrap; /* stack elements if needed */
 }
 
 .task-item:hover {
@@ -160,17 +143,17 @@ input[type="text"]:focus {
   margin-right: 0.5rem;
 }
 
-/* =================== TASK BUTTONS =================== */
+/* ================= TASK BUTTONS ================= */
 .task-buttons {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap; /* wrap buttons if needed */
+  flex-wrap: wrap; /* wrap on small screens */
 }
 
 .edit-btn,
-.save-btn {
-  background-color: #bfa243;
-  color: #fff;
+.save-btn,
+.cancel-btn,
+.delete-btn {
   padding: 0.4rem 0.8rem;
   border-radius: 0.7rem;
   font-size: 0.9rem;
@@ -178,6 +161,12 @@ input[type="text"]:focus {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.edit-btn,
+.save-btn {
+  background-color: #bfa243;
+  color: #fff;
 }
 
 .edit-btn:hover,
@@ -190,13 +179,6 @@ input[type="text"]:focus {
 .cancel-btn {
   background-color: #888;
   color: #fff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .cancel-btn:hover {
@@ -207,13 +189,6 @@ input[type="text"]:focus {
 .delete-btn {
   background-color: #000;
   color: #fff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.7rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .delete-btn:hover {
@@ -221,7 +196,7 @@ input[type="text"]:focus {
   transform: translateY(-1px);
 }
 
-/* =================== CHECKBOX =================== */
+/* ================= CHECKBOX ================= */
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -229,56 +204,74 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* =================== MOBILE MEDIA QUERIES =================== */
+/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 480px) {
   .app {
-    padding: 1rem;
+    padding: 0.8rem;  /* compact padding */
     width: 95%;
   }
 
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
 
-  /* Stack input & button vertically */
+  /* STACK INPUT & BUTTON */
   .input-row {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   input[type="text"] {
     width: 100%;
-    font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
   }
 
   .input-row button {
     width: 100%;
-    font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
   }
 
-  /* Stack filter buttons */
+  /* STACK FILTER BUTTONS */
   .filter-row {
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.3rem;
     align-items: flex-start;
   }
 
   .filter-row button {
     width: 100%;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
     text-align: center;
   }
 
-  /* Stack task items and buttons */
+  /* STACK TASK ITEMS */
   .task-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .edit-input {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.6rem;
   }
 
   .task-buttons {
     width: 100%;
+    gap: 0.3rem;
     justify-content: flex-start;
+  }
+
+  .edit-btn,
+  .save-btn,
+  .cancel-btn,
+  .delete-btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
   }
 }
