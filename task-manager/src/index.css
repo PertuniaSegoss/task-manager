@@ -6,14 +6,46 @@ body {
 .app {
   padding: 20px;
   max-width: 600px;
+  width: 95%; /* allow it to shrink on small screens */
   margin: auto;
+  box-sizing: border-box;
 }
 
 .add-task {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap; /* allow input and button to stack if needed */
+}
+
+.add-task input {
+  flex: 1; /* input takes available space */
+  min-width: 150px; /* prevent it from becoming too small */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.add-task button {
+  padding: 10px;
+  min-width: 80px;
+  flex-shrink: 0; /* button keeps its size */
 }
 
 .task-list {
   margin-top: 20px;
 }
+
+/* MOBILE SPECIFIC */
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .add-task input {
+    font-size: 0.9rem;
+  }
+
+  .add-task button {
+    font-size: 0.9rem;
+  }
+}
+
