@@ -1,3 +1,4 @@
+/* =================== GENERAL STYLES =================== */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -11,8 +12,8 @@ body {
 .app {
   background-color: #fff;
   padding: 2rem;
-  width: 95%; /* allow shrinking on mobile */
-  max-width: 500px; /* keeps desktop design */
+  width: 95%;       /* scale to fit mobile */
+  max-width: 500px; /* desktop width */
   border-radius: 1.5rem;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -26,17 +27,17 @@ h1 {
   letter-spacing: 0.5px;
 }
 
-/* Input Row */
+/* =================== INPUT ROW =================== */
 .input-row {
   display: flex;
   gap: 0.7rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap; /* allows input & button to stack */
+  flex-wrap: wrap; /* allow wrapping if needed */
 }
 
 input[type="text"] {
-  flex: 1; /* takes available space */
-  min-width: 120px; /* prevents being too small */
+  flex: 1;
+  min-width: 120px;
   padding: 0.8rem 1rem;
   border-radius: 1rem;
   border: 1px solid #ddd;
@@ -51,7 +52,7 @@ input[type="text"]:focus {
   box-shadow: 0 0 6px rgba(191, 162, 67, 0.4);
 }
 
-button {
+.input-row button {
   background-color: #000;
   color: #fff;
   padding: 0.8rem 1.2rem;
@@ -60,22 +61,22 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0; /* prevents button from shrinking too much */
+  flex-shrink: 0;
 }
 
-button:hover {
+.input-row button:hover {
   background-color: #333;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Filter Row */
+/* =================== FILTER ROW =================== */
 .filter-row {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap; /* allow filters to stack on small screens */
+  flex-wrap: wrap;
 }
 
 .filter-row button {
@@ -99,14 +100,32 @@ button:hover {
   box-shadow: 0 2px 6px rgba(191, 162, 67, 0.5);
 }
 
-/* Task List */
+/* =================== TASK LIST =================== */
 .task-list {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+
+  max-height: 300px;  /* limit height on mobile */
+  overflow-y: auto;   /* enable vertical scroll */
+  padding-right: 0.5rem;
+  box-sizing: border-box;
 }
 
-/* Task Item */
+/* Scrollbar styling for WebKit browsers */
+.task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 .task-item {
   background-color: #fff;
   display: flex;
@@ -117,7 +136,7 @@ button:hover {
   border: 1px solid #eee;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-  flex-wrap: wrap; /* allow content to wrap on small screens */
+  flex-wrap: wrap; /* allow wrapping on mobile */
 }
 
 .task-item:hover {
@@ -141,17 +160,17 @@ button:hover {
   margin-right: 0.5rem;
 }
 
-/* Task Buttons */
+/* =================== TASK BUTTONS =================== */
 .task-buttons {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap; /* wrap buttons if too small */
+  flex-wrap: wrap; /* wrap buttons if needed */
 }
 
 .edit-btn,
-.save-btn,
-.cancel-btn,
-.delete-btn {
+.save-btn {
+  background-color: #bfa243;
+  color: #fff;
   padding: 0.4rem 0.8rem;
   border-radius: 0.7rem;
   font-size: 0.9rem;
@@ -159,13 +178,6 @@ button:hover {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-/* Individual Button Colors */
-.edit-btn,
-.save-btn {
-  background-color: #bfa243;
-  color: #fff;
 }
 
 .edit-btn:hover,
@@ -178,6 +190,13 @@ button:hover {
 .cancel-btn {
   background-color: #888;
   color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .cancel-btn:hover {
@@ -188,6 +207,13 @@ button:hover {
 .delete-btn {
   background-color: #000;
   color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .delete-btn:hover {
@@ -195,7 +221,7 @@ button:hover {
   transform: translateY(-1px);
 }
 
-/* Checkbox */
+/* =================== CHECKBOX =================== */
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -203,7 +229,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-/* MOBILE MEDIA QUERIES */
+/* =================== MOBILE MEDIA QUERIES =================== */
 @media (max-width: 480px) {
   .app {
     padding: 1rem;
@@ -214,16 +240,37 @@ input[type="checkbox"] {
     font-size: 1.3rem;
   }
 
+  /* Stack input & button vertically */
+  .input-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   input[type="text"] {
+    width: 100%;
     font-size: 0.9rem;
     padding: 0.6rem 0.8rem;
   }
 
-  button {
+  .input-row button {
+    width: 100%;
     font-size: 0.9rem;
     padding: 0.6rem 0.8rem;
   }
 
+  /* Stack filter buttons */
+  .filter-row {
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+  }
+
+  .filter-row button {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Stack task items and buttons */
   .task-item {
     flex-direction: column;
     align-items: flex-start;
